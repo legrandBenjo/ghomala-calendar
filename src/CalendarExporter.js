@@ -19,7 +19,6 @@ const CalendarExporter = () => {
     Papa.parse(file, {
       header: true,
       complete: (results) => {
-        // Filtrer les entrées invalides
         const validData = results.data.filter(item => 
           item && item.Date && item['Day(Ghomala)']
         );
@@ -39,19 +38,14 @@ const CalendarExporter = () => {
     }
 
     try {
-      // Créer un nouveau classeur
       const wb = XLSX.utils.book_new();
-      
-      // Traiter les données pour les organiser par mois
       const monthsData = processDataForExcel(calendarData);
       
-      // Créer les feuilles par trimestre
       createQuarterSheet(wb, monthsData.slice(0, 3), 'Trimestre 1');
       createQuarterSheet(wb, monthsData.slice(3, 6), 'Trimestre 2');
       createQuarterSheet(wb, monthsData.slice(6, 9), 'Trimestre 3');
       createQuarterSheet(wb, monthsData.slice(9), 'Trimestre 4');
       
-      // Générer le fichier Excel
       const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
       const data = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
       saveAs(data, `${fileName}.xlsx`);
@@ -133,11 +127,18 @@ const CalendarExporter = () => {
     XLSX.utils.book_append_sheet(wb, ws, sheetName);
   };
 
+  // Fonction pour vérifier si les données sont valides pour le PDF
+  const isDataValidForPDF = (data) => {
+    return data.length > 0 && data.every(item => 
+      item.Date && item['Day(Ghomala)']
+    );
+  };
+
   return (
     <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
-      <h1>Export du Calendrier Ghomala 2025</h1>
+      <h1 style={{ color: '#2c3e50' }}>Export du Calendrier Ghomala 2025</h1>
       
-      <div style={{ margin: '20px 0' }}>
+      <div style={{ margin: '20px 0', display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
         <input
           type="file"
           accept=".csv"
@@ -154,13 +155,13 @@ const CalendarExporter = () => {
             border: 'none',
             borderRadius: '4px',
             cursor: 'pointer',
-            marginRight: '10px'
+            flex: '1 0 auto'
           }}
         >
           Choisir un fichier CSV
         </button>
         
-        {calendarData.length > 0 && (
+        {calendarData.length > 0  && isDataValidForPDF(calendarData) && (
           <>
             <PDFDownloadLink
               document={<CalendarPDF calendarData={calendarData} />}
@@ -171,10 +172,12 @@ const CalendarExporter = () => {
                 color: 'white',
                 textDecoration: 'none',
                 borderRadius: '4px',
-                marginRight: '10px'
+                flex: '1 0 auto'
               }}
             >
-              {({ loading }) => (loading ? 'Préparation...' : 'Exporter en PDF')}
+              {({ loading }) => (
+                loading ? 'Préparation du PDF...' : 'Exporter en PDF'
+              )}
             </PDFDownloadLink>
             
             <button
@@ -185,7 +188,8 @@ const CalendarExporter = () => {
                 color: 'white',
                 border: 'none',
                 borderRadius: '4px',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                flex: '1 0 auto'
               }}
             >
               Exporter en Excel Formaté
@@ -195,9 +199,20 @@ const CalendarExporter = () => {
       </div>
       
       {calendarData.length > 0 && (
-        <div style={{ marginTop: '20px' }}>
-          <p>Fichier chargé: {fileInputRef.current?.files[0]?.name}</p>
-          <p>Nombre d'entrées valides: {calendarData.length}</p>
+        <div style={{ 
+          marginTop: '20px',
+          padding: '15px',
+          backgroundColor: '#f8f9fa',
+          borderRadius: '4px'
+        }}>
+          <p><strong>Fichier chargé:</strong> {fileInputRef.current?.files[0]?.name}</p>
+          <p><strong>Nombre d'entrées valides:</strong> {calendarData.length}</p>
+
+          {!isDataValidForPDF(calendarData) && (
+            <p style={{ color: '#e74c3c' }}>
+              Les données chargées ne sont pas valides pour la génération du PDF
+            </p>
+          )}
         </div>
       )}
     </div>
