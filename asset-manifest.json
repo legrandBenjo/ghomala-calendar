@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/ghomala-calendar/static/js/main.6fce024c.js",
-    "index.html": "/ghomala-calendar/index.html",
-    "main.6fce024c.js.map": "/ghomala-calendar/static/js/main.6fce024c.js.map"
+    "main.js": "./static/js/main.4bb3b45e.js",
+    "index.html": "./index.html",
+    "main.4bb3b45e.js.map": "./static/js/main.4bb3b45e.js.map"
   },
   "entrypoints": [
-    "static/js/main.6fce024c.js"
+    "static/js/main.4bb3b45e.js"
   ]
 }
