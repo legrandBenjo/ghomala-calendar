@@ -1,19 +1,10 @@
 {
   "files": {
-    "main.css": "/ghomala-calendar/static/css/main.e6c13ad2.css",
-    "main.js": "/ghomala-calendar/static/js/main.585ed1f5.js",
-    "static/js/781.8eaa08ae.chunk.js": "/ghomala-calendar/static/js/781.8eaa08ae.chunk.js",
-    "static/js/155.9a86fde9.chunk.js": "/ghomala-calendar/static/js/155.9a86fde9.chunk.js",
-    "static/js/917.8911dab5.chunk.js": "/ghomala-calendar/static/js/917.8911dab5.chunk.js",
+    "main.js": "/ghomala-calendar/static/js/main.6fce024c.js",
     "index.html": "/ghomala-calendar/index.html",
-    "main.e6c13ad2.css.map": "/ghomala-calendar/static/css/main.e6c13ad2.css.map",
-    "main.585ed1f5.js.map": "/ghomala-calendar/static/js/main.585ed1f5.js.map",
-    "781.8eaa08ae.chunk.js.map": "/ghomala-calendar/static/js/781.8eaa08ae.chunk.js.map",
-    "155.9a86fde9.chunk.js.map": "/ghomala-calendar/static/js/155.9a86fde9.chunk.js.map",
-    "917.8911dab5.chunk.js.map": "/ghomala-calendar/static/js/917.8911dab5.chunk.js.map"
+    "main.6fce024c.js.map": "/ghomala-calendar/static/js/main.6fce024c.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.585ed1f5.js"
+    "static/js/main.6fce024c.js"
   ]
 }
