@@ -1,24 +1,24 @@
 {
   "name": "calendrier-ghomala",
-  "homepage": "https://legrandbenjo.github.io/ghomala-calendar/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@react-pdf/font": "^4.0.2",
     "@react-pdf/renderer": "^4.3.0",
     "file-saver": "^2.0.5",
-    "gh-pages": "^6.3.0",
     "papaparse": "^5.5.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "^5.0.1",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "gh-pages": "^6.3.0"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
-    "build": "PUBLIC_URL=. react-scripts build"
+    "build": "react-scripts build",
+    "deploy": "gh-pages -d build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
