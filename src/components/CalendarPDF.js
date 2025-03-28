@@ -5,8 +5,8 @@ import { Page, Text, View, Document, StyleSheet, Font } from '@react-pdf/rendere
 Font.register({
   family: 'NotoSans',
   fonts: [
-    { src: '/fonts/Noto_Sans/static/NotoSans-Regular.ttf' },
-    { src: '/fonts/Noto_Sans/static/NotoSans-Bold.ttf', fontWeight: 'bold' }
+    { src: `${process.env.PUBLIC_URL}/fonts/NotoSans-Regular.ttf`, },
+    { src: `${process.env.PUBLIC_URL}/fonts/NotoSans-Bold.ttf`, fontWeight: 'bold', }
   ],
 });
 
